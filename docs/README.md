@@ -5,7 +5,7 @@
 1. install `docsify-cli`
 
 ```bash
-`npm i docsify-cli -g`
+npm i docsify-cli -g
 ```
 
 2. git clone
