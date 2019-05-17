@@ -14,6 +14,12 @@ npm i docsify-cli -g
 git clone https://github.com/jiangxiaoxin/js.pro.git
 ```
 
+3. run
+
+```bash
+docsify serve docs
+```
+
 ## 新增
 
 - 在对应的目录下以 `markdown` 格式写
