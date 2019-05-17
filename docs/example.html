@@ -47,5 +47,37 @@
       red.innerHTML = ++num
     })
   </script>
+
+  <script>
+    // 'use strict'
+    var arr = []
+    arr.push(function() {
+      console.log(this)
+    })
+
+    arr[0]() 
+
+    var func = arr[0]
+    func()
+
+    console.log(window.func)
+  
+  </script>
+
+  <script>
+  
+    function infiltrate(value) {
+      console.log(value, arguments[0])
+
+      value = value + value
+      console.log(value, arguments[0])
+
+      arguments[0] = value + value
+      console.log(value, arguments[0])
+    }
+
+    infiltrate('ab')
+
+  </script>
 </body>
 </html>
