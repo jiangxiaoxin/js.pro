@@ -52,8 +52,8 @@
   // console.log('--', a.constructor, b.constructor, a.constructor === b.constructor) // 已经完全两回事了
   </script> -->
 
-  <script>
-
+  <!-- <script>
+    console.log(Ninja.prototype['__proto__'].constructor === Object)
     console.log(Ninja.prototype.constructor)// function Ninja
     console.log(Ninja.prototype['__proto__'])
     console.log(Ninja.prototype['__proto__'] === Object, Ninja.prototype['__proto__'] === Object.prototype) // false true
@@ -69,8 +69,65 @@
     console.log(num.constructor); // function Number()
     console.log(num['__proto__']);
     console.log(num['__proto__'] === num.constructor.prototype) // true
+  </script> -->
+
+  <!-- <script>
+    function Graph() {
+      this.vertices = [];
+      this.edges = [];
+    }
+
+    Graph.prototype.addVertex = function (v) {
+      this.vertices.push(v);
+    }
+
+    Graph.prototype.name = 'graph'
+
+    var g = new Graph();
+    g.addVertex(1);
+    g.addVertex(2)
+    console.log(g);
+
+    var h = new Object()
+    h['__proto__'] = Graph.prototype
+    Graph.call(h)
+
+    h.addVertex(100)
+    h.addVertex(200)
+    console.log(h);
+
+    console.log(Graph.prototype.addVertex.prototype)
+
+    console.log('g.name', g.name, Graph.prototype.name);
+    g.name = 'hello'
+    console.log('g.name', g.name, Graph.prototype.name);
     
+    var j = new Graph()
+    console.log('j.name', j.name);
+
+  </script> -->
+
+  <script>
+  function Person(name) {
+    this.name = name
+  }
+
+  Function.prototype.new = function(args) {
+    console.log(this)
+    console.log(Object.prototype.toString.call(this));
     
+    var obj = Object.create(this.prototype)
+    console.log(obj) // person
+    var rect = this.apply(obj, arguments)
+    return (typeof rect === 'object' && rect) || obj
+  }
+
+  var p = Person.new('pp')
+  console.log(p);
+  
+
+
+  
   </script>
 
 </body>
