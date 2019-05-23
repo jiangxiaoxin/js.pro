@@ -18,7 +18,20 @@
       console.log('swing sword 111')
     }
 
-    // console.log(Ninja.prototype.swingSword.prototype) // 也是有值得
+    // console.log('Ninja.prototype.constructor', Ninja.prototype.constructor)
+
+    // Ninja.prototype = {
+    //   hi: function () {
+
+    //   }
+    // }
+
+    // console.log('Ninja.prototype.constructor', Ninja.prototype.constructor)
+
+    // console.log(Ninja.prototype.constructor === Object); // true
+
+
+    // console.log(Ninja.prototype.swingSword.prototype) // 也是有值的
 
   </script>
 
@@ -107,27 +120,161 @@
 
   </script> -->
 
+  <!-- <script>
+    function Person(name) {
+      this.name = name
+    }
+
+    Function.prototype.new = function (args) {
+      console.log(this)
+      console.log(Object.prototype.toString.call(this));
+
+      var obj = Object.create(this.prototype)
+      console.log(obj) // person
+      var rect = this.apply(obj, arguments)
+      return (typeof rect === 'object' && rect) || obj
+    }
+
+    var p = Person.new('pp')
+    console.log(p);
+
+  </script> -->
+
+  <!-- <script>
+    function A(name) {
+      this.name = name || 'a.name'
+      this.hi = function() {
+        console.log('A hi', this.name)
+      }
+    }
+
+    A.prototype.foo = function() {
+      console.log('A foo', this.name)
+    }
+
+    function B(name, age) {
+      A.call(this, name)
+      this.age = age|| 18
+    }
+
+    var b = new B('mm', 1000)
+    console.log(b);
+
+    console.log(b.name, b.age);
+    b.hi()
+    b.foo()
+
+  </script> -->
+
+  <!-- <script>
+  function Person() {
+
+  }
+
+  var p = new Person()
+
+  console.log(Person.prototype.__proto__ === Object.prototype);
+  
+  
+  </script> -->
+
+  <!-- <script>
+    function Foo() {
+      this.value = 42;
+    }
+    Foo.prototype = {
+      method: function () { }
+    };
+
+    function Bar() { }
+
+    // 设置Bar的prototype属性为Foo的实例对象
+    Bar.prototype = new Foo();
+    Bar.prototype.foo = 'Hello World';
+
+    // 修正Bar.prototype.constructor为Bar本身
+    Bar.prototype.constructor = Bar;
+
+    var test = new Bar() // 创建Bar的一个新实例
+    console.log(test instanceof Bar, test instanceof Foo, test instanceof Object);
+
+    console.log(test)
+
+  </script> -->
+
+  <!-- <script>
+    function Foo() {
+      this.value = 42;
+    }
+    Foo.prototype = {
+      method: function () { }
+    };
+
+    Foo.prototype.constructor = Foo
+
+    function Bar() { }
+
+    // 设置Bar的prototype属性为Foo的实例对象
+    Bar.prototype = new Foo();
+    Bar.prototype.foo = 'Hello World';
+
+    // 修正Bar.prototype.constructor为Bar本身
+    Bar.prototype.constructor = Bar;
+
+    var test = new Bar() // 创建Bar的一个新实例
+    console.log(test instanceof Bar, test instanceof Foo, test instanceof Object);
+
+    console.log(test)
+
+  </script> -->
+
+  <!-- <script>
+    function Foo() {
+      this.value = 42;
+    }
+
+    Foo.prototype.method = function () {
+
+    }
+
+    function Bar() { }
+
+    // 设置Bar的prototype属性为Foo的实例对象
+    Bar.prototype = new Foo();
+    Bar.prototype.foo = 'Hello World';
+
+    // 修正Bar.prototype.constructor为Bar本身
+    Bar.prototype.constructor = Bar;
+
+    var test = new Bar() // 创建Bar的一个新实例
+    console.log(test instanceof Bar, test instanceof Foo, test instanceof Object);
+
+    console.log(test)
+
+  </script> -->
+
   <script>
-  function Person(name) {
-    this.name = name
-  }
+    // function Foo() {}
+    // function Bar() {}
 
-  Function.prototype.new = function(args) {
-    console.log(this)
-    console.log(Object.prototype.toString.call(this));
-    
-    var obj = Object.create(this.prototype)
-    console.log(obj) // person
-    var rect = this.apply(obj, arguments)
-    return (typeof rect === 'object' && rect) || obj
-  }
+    // Foo.prototype.foo = function () {}
 
-  var p = Person.new('pp')
-  console.log(p);
-  
+    // Bar.prototype = new Foo()
+
+    // var b = new Bar()
+
+    // console.log(b instanceof Foo, b instanceof Bar);
 
 
-  
+    var ninja = new Ninja()
+
+    console.log(ninja instanceof Ninja)
+
+    Ninja.prototype = {}
+
+    console.log(ninja instanceof Ninja)
+
+
   </script>
 
 </body>

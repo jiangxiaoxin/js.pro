@@ -1,5 +1,6 @@
 - js
   - [this和作用域相关](js/this和作用域相关.md)
+  - [原型](js/原型.md)
 
 - css
   - [basic](css/basic.md)
