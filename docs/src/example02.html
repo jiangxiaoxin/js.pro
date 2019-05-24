@@ -253,7 +253,7 @@
 
   </script> -->
 
-  <script>
+  <!-- <script>
     // function Foo() {}
     // function Bar() {}
 
@@ -275,6 +275,53 @@
     console.log(ninja instanceof Ninja)
 
 
+  </script> -->
+
+  <script>
+    var a = {}
+    var b = Object.create(a)
+    // console.log(b instanceof Object);
+    // console.log(b instanceof a);
+    
+
+    function isRelatedTo(o1, o2) {
+      var F = function() {}
+      F.prototype = o2
+      return o1 instanceof F;
+    }
+
+    console.log(isRelatedTo(b, a));
+
+    function P(name) {
+      this.name = name || 'p'
+    }
+
+    P.prototype.hi = function() {}
+
+    var p1 = new P()
+    console.log(p1);
+    p1 instanceof P // true
+
+    var p2 = Object.create(P)
+    console.log(p2)
+    p2 instanceof P // false
+
+
+    var p3 = Object.create(P.prototype)
+    console.log(p3);
+    p3 instanceof P // true
+
+    var m = new P()
+    var p4 = Object.create(m)
+    console.log(p4);
+    p4 instanceof P // true
+    // p4 instanceof m // error: right-hand side of instanceof is not callable
+
+    
+    
+    
+    
+    
   </script>
 
 </body>
