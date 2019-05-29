@@ -1,7 +1,8 @@
 - web
-  - [this和作用域相关](js/this和作用域.md)
-  - [原型和继承](js/原型和继承.md)
-  - [模块化](js/模块化.md)
+  - [this和作用域相关](web/this和作用域.md)
+  - [原型](web/原型.md)
+  - [继承](web/继承.md)
+  - [模块化](web/模块化.md)
   - [网站性能相关](performance/性能相关.md)
 - other
   - [Git常用命令](others/git.md)
