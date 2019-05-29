@@ -38,7 +38,7 @@
   </script> -->
 
 
-  <script>
+  <!-- <script>
     
     function foo() {
       console.log(this.a)
@@ -50,6 +50,80 @@
       'use strict'
       foo()
     })()
+  </script> -->
+
+  <!-- <script>
+    function Person() {
+      this.name = 'pp'
+      this.likes = ['apple', 'cake']
+    }
+
+    Person.prototype.eat = function() {
+      console.log('person eat');
+    }
+
+    function Man() {}
+
+    Man.prototype = new Person()
+
+    var m = new Man()
+
+    // console.log(m)
+    // console.log(m.name, m.likes)
+
+    // m.likes.push('beer')
+
+    // var n = new Man()
+    // console.log(n.name, n.likes, n.hasOwnProperty('likes')); // ['apple', 'cake', 'beer']
+
+    m.likes = [1,2,3]
+    var i = new Man()
+    console.log(m.likes, i.likes);
+
+    console.log(m instanceof Man, m instanceof Person);
+    console.log(i instanceof Man, i instanceof Person);
+  
+  </script> -->
+
+  <script>
+    function Father() {}
+
+    Father.prototype.hi = function() {
+      console.log('father hi');
+    }
+
+    function Child() {
+      Father.call(this)
+      this.type = 'child'
+    }
+
+    function F() {}
+    F.prototype = Father.prototype
+
+    var f = new F()
+
+    Child.prototype = f
+    // console.log(Child.prototype.constructor === Father);
+    Child.prototype.constructor = Child // 我们是用 new Child()的形式实例化的，理所当然的希望实例的构造函数是Child
+
+    Child.prototype.eat = function() {
+      console.log('child eat');
+    }
+
+    
+    
+
+    var c = new Child()
+    console.log(c);
+    c.hi();
+    c.eat();
+
+
+
+
+
+
+
   </script>
 
 
