@@ -232,6 +232,20 @@ git commit --amend -m 'new_message'
 
 对要修改的 commit 的父次提交进行交互式的变基`git rebase -i commit_id`
 
-- 回滚
+- 回滚（reverse commit）
 
-在某一次提交上执行回滚操作，是将这次提交记录所涉及的修改全部还原成之前的样子，那么刚才修改的地方就会丢失掉。
+在某一次提交上执行回滚操作，是将这次提交记录所涉及的修改全部还原成之前的样子，那么刚才修改的地方就会全丢失掉。
+
+- 恢复暂存区（unstage）
+
+```
+git reset HEAD // 恢复整个暂存区的文件
+git reset HEAD <file_name> // 只恢复暂存区的某个文件
+```
+
+- 对比文件差异(diff，跟对比差异有关的都使用 git diff，只是参数不一样)
+
+```
+git diff <branch_name> <branch_name> -- <file_name> // 对比两个分支中某个文件的差异
+git diff <commit_id> <commit_id> -- <file_name> // 对比一个分支的某两个提交中，某个文件的差异
+```
