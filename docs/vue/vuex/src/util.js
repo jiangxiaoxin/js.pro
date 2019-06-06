@@ -98,6 +98,8 @@ export function getNestedState(state, nestedKeys) {
 /**
  * Hacks to get access to Vue internals.
  * Maybe we should expose these...
+ * 
+ * 这个方法真是巧妙呀，通过实例的constructor来获取对应的“类构造函数”
  */
 
 let Watcher;

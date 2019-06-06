@@ -5,6 +5,16 @@ import override from "./override";
 let Vue;
 let uid = 0;
 
+
+/**
+ * 最重要的Store类
+ * 传入的参数是个object，有很多特定的字段：
+ * state 全局初始状态
+ * mutations 全局的mutation
+ * modules 模块
+ * plugins vuex的插件
+ * strict 任何不是通过mutation去修改state的都会报错
+ */
 class Store {
   /**
    * @param {Object} options
@@ -43,7 +53,7 @@ class Store {
     const silent = Vue.config.silent; // true 取消 Vue 所有的日志与警告
     Vue.config.silent = true;
     this._vm = new Vue({
-      data: {
+      data: { //通过创建Vue实例来实现响应式数据变化
         state
       }
     });
@@ -66,11 +76,11 @@ class Store {
    * @return {Object}
    */
 
-  get state() {
+  get state() { // 可以通过 this.$store.state 方式访问所有的state数据
     return this._vm.state;
   }
 
-  set state(v) {
+  set state(v) { // 不可以直接设置state
     throw new Error(
       "[vuex] Use store.replaceState() to explicit replace store state."
     );
@@ -80,9 +90,12 @@ class Store {
    * Replace root state.
    *
    * @param {Object} state
+   * 
+   * 完整的替换整个state对象，所以如果有数据是通过模块引入的，那就要保证新的state对象按照正确的结构替换，否则替换后其他模块访问state时就会报错，因为数据丢失了
+   * 这是个危险的操作，用好了也很好
    */
 
-  replaceState(state) {
+  replaceState(state) { 
     this._dispatching = true;
     this._vm.state = state;
     this._dispatching = false;
@@ -92,6 +105,11 @@ class Store {
    * Dispatch an action.
    *
    * @param {String} type
+   * 
+   * this.$store.dispatch('userIncrease')这种用法
+   * dispatch可以用的格式：
+   * dispatch('userIncrease', {})
+   * dispatch({type: 'userIncrease', payload: {}})
    */
 
   dispatch(type, ...payload) {
@@ -104,12 +122,13 @@ class Store {
       if (type.silent) silent = true;
       type = type.type;
     }
-    const handler = this._mutations[type];
+    const handler = this._mutations[type]; // 从全部的mutations列表里根据type找出对应的处理方法
     const state = this.state;
     if (handler) {
-      this._dispatching = true;
+      this._dispatching = true; // 在调用mutation修改state之前设置为true
       // apply the mutation
-      if (Array.isArray(handler)) {
+      if (Array.isArray(handler)) { // 如果针对某个type的mutation有好多
+        //TODO:这种一个type对应很多个mutation处理方法的应用场景是什么
         handler.forEach(h => {
           isObjectStyleDispatch ? h(state, payload) : h(state, ...payload);
         });
@@ -118,12 +137,16 @@ class Store {
           ? handler(state, payload)
           : handler(state, ...payload);
       }
-      this._dispatching = false;
-      if (!silent) {
+      this._dispatching = false;// 在修改完之后又恢复至false
+      /**
+       * mutation都是同步方法，所以在_dispatching设为true，进入mutation修改state数据后就会通过Watcher观察到state的变化，此时_dispatching仍然是true，这就是
+       * 通过mutation修改的state。如果_dispatching是false，那就不是通过这里修改的state，就认定不是通过mutation修改state数据，然后就报错了。
+       */
+      if (!silent) { //如果不是静默模式，就执行所有的_subscriber
         const mutation = isObjectStyleDispatch ? payload : { type, payload };
         this._subscribers.forEach(sub => sub(mutation, state));
       }
-    } else {
+    } else { // 找不到对应的处理方法就报错咯
       console.warn(`[vuex] Unknown mutation: ${type}`);
     }
   }
@@ -148,6 +171,8 @@ class Store {
 
   /**
    * Subscribe to state changes. Fires after every mutation.
+   * 
+   * 这个方法很不错，通过作用域实现取消订阅功能
    */
 
   subscribe(fn) {
@@ -270,7 +295,7 @@ class Store {
       this._vm,
       "state",
       () => {
-        if (!this._dispatching) {
+        if (!this._dispatching) { // 根据当前的_dispatching状态来判断是否是通过mutation修改的数据。每次要mutation修改数据时会设置_dispatching为true
           throw new Error(
             "[vuex] Do not mutate vuex store state outside mutation handlers."
           );

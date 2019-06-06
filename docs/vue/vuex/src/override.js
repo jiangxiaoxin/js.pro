@@ -41,16 +41,16 @@ export default function(Vue) {
 
   function vuexInit() {
     const options = this.$options;
-    const { store, vuex } = options;
+    const { store, vuex } = options; // 创建根vue实例时传入了store对象
     // store injection
-    if (store) {
-      this.$store = store;
-    } else if (options.parent && options.parent.$store) {
-      this.$store = options.parent.$store;
+    if (store) { // 这里会在每个实例的beforeCreate调用
+      this.$store = store; //所以每个Vue实例都能 this.$store的方式去访问整个根的store了
+    } else if (options.parent && options.parent.$store) { 
+      this.$store = options.parent.$store; // 如果初始化根实例时没传入store对象（或者传错了，不叫这个名字）,那就使用“父容器”的。因为全局就只能有一个Store实例
     }
     // vuex option handling
-    if (vuex) {
-      if (!this.$store) {
+    if (vuex) { // 如果传入了vuex，却没有传入store实例。
+      if (!this.$store) { //TODO:这个先不看
         console.warn(
           "[vuex] store not injected. make sure to " +
             "provide the store option in your root component."
@@ -174,7 +174,7 @@ export default function(Vue) {
     };
   }
 
-  // option merging
+  // option merging 合并规则
   const merge = Vue.config.optionMergeStrategies.computed;
   Vue.config.optionMergeStrategies.vuex = (toVal, fromVal) => {
     if (!toVal) return fromVal;
