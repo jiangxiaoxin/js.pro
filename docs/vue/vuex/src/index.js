@@ -209,16 +209,16 @@ class Store {
    */
 
   _setupModuleState(state, modules) {
-    if (!isObject(modules)) return;
+    if (!isObject(modules)) return; //如果没有分模块则modules为空，就会直接返回
 
     Object.keys(modules).forEach(key => {
       const module = modules[key];
 
       // set this module's state
-      Vue.set(state, key, module.state || {});
+      Vue.set(state, key, module.state || {}); // 通过Vue.set方法使新添加的数据变得响应式
 
       // retrieve nested modules
-      this._setupModuleState(state[key], module.modules);
+      this._setupModuleState(state[key], module.modules); //递归式的去注册，所以store的模块里面可以再有子模块
     });
   }
 
@@ -231,7 +231,7 @@ class Store {
 
   _setupModuleMutations(updatedModules) {
     const modules = this._modules;
-    Object.keys(updatedModules).forEach(key => {
+    Object.keys(updatedModules).forEach(key => { // 重新赋值一遍，其实对于默认的使用，这一步多余了，因为this._modules和updataedModuels是一样的
       modules[key] = updatedModules[key];
     });
     const updatedMutations = this._createModuleMutations(modules, []);
