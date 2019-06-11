@@ -124,6 +124,8 @@ git push <remote> :refs/tags/<tagname> // 删除本地后，提交删除，就�
 ```
 git branch //查看本地分支列表
 
+git branch -a //查看本地和远程的分支列表
+
 git branch <branch_name> // 在当前分支基础上开辟新的 branch_name 分支
 
 git branch -d <branch_name> // 删除分支
