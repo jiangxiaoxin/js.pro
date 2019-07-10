@@ -6,9 +6,51 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>模块</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        .parent {
+            position: relative;
+            height: 20px;
+            margin-bottom: 20px;
+            background: #dddddd;
+        }
+
+        .child {
+            position: absolute;
+        }
+
+        .box {
+            width: 20px;
+            height: 20px;
+        }
+
+        .box-red {
+            background: red;
+        }
+
+        .box-green {
+            background: green;
+        }
+
+    </style>
 </head>
 
 <body>
+
+    <div class="parent">
+        <div id="box1" class="child box box-red">
+
+        </div>
+    </div>
+    <div class="parent">
+        <div id="box2" class="child box box-green">
+
+        </div>
+    </div>
+
 
 
   <!-- <script type="text/javascript">
@@ -39,7 +81,7 @@
 
 
   <!-- <script>
-    
+
     function foo() {
       console.log(this.a)
     }
@@ -82,7 +124,7 @@
 
     console.log(m instanceof Man, m instanceof Person);
     console.log(i instanceof Man, i instanceof Person);
-  
+
   </script> -->
 
   <script>
@@ -110,8 +152,8 @@
       console.log('child eat');
     }
 
-    
-    
+
+
 
     var c = new Child()
     console.log(c);
@@ -125,6 +167,161 @@
 
 
   </script>
+
+  <script>
+    var raf = window.requestAnimationFrame.bind(window)
+    // var nextFrame = function(fn) {
+    //     console.log('开始nextFrame')
+    //   // raf(function() {
+    //   //     console.log('111111111')
+    //   //     raf(fn)
+    //   // })
+    //   //   raf(function() {
+    //   //       fn()
+    //   //   })
+    //   //   raf(function () {
+    //   //       fn()
+    //   //       raf(fn)
+    //   //   })
+    // }
+    var nextFrame = function (fn) {
+        console.time('test')
+        requestAnimationFrame(function() {
+            requestAnimationFrame(fn)
+        })
+    }
+    var obj = {}
+    var count = 0
+    // console.time('nextframe')
+    nextFrame(function() {
+        console.timeEnd('test')
+    })
+    // console.timeEnd('nextframe')
+    //   console.log(obj)
+
+  </script>
+
+  <script>
+      var loop = window.requestAnimationFrame.bind(window)
+      var stop = window.cancelAnimationFrame.bind(window)
+
+      var time = 0
+      var print = function () {
+          console.log(time)
+          time += 1
+      }
+
+      var cancel = loop(print)
+      if (time > 10) {
+          stop(cancel)
+      }
+
+      setTimeout(function() {
+          console.log('time', time)
+      }, 5000)
+  </script>
+
+  <script>
+      var log = function() {
+          console.log('log', Date.now())
+      }
+      var many = function() {
+          log()
+          requestAnimationFrame(many)
+      }
+
+      // many()
+  </script>
+
+    <script>
+
+        var box1 = document.getElementById('box1');
+        var box2 = document.getElementById('box2');
+
+
+        var func_a = function (fn) {
+            requestAnimationFrame(function() {
+                requestAnimationFrame(function() {
+                    requestAnimationFrame(function() {
+                        requestAnimationFrame(function() {
+                            requestAnimationFrame(function() {
+                                requestAnimationFrame(function() {
+                                    requestAnimationFrame(function() {
+                                        requestAnimationFrame(function() {
+                                            requestAnimationFrame(function() {
+                                                requestAnimationFrame(function() {
+                                                    requestAnimationFrame(function() {
+                                                        requestAnimationFrame(function () {
+                                                            requestAnimationFrame(function() {
+                                                                requestAnimationFrame(function() {
+                                                                    requestAnimationFrame(function() {
+                                                                        requestAnimationFrame(function() {
+                                                                            requestAnimationFrame(function() {
+                                                                                requestAnimationFrame( function() {
+                                                                                    requestAnimationFrame(function() {
+                                                                                        requestAnimationFrame(function() {
+                                                                                            requestAnimationFrame(function() {
+                                                                                                requestAnimationFrame(function() {
+                                                                                                    requestAnimationFrame(function() {
+                                                                                                        requestAnimationFrame(function() {
+                                                                                                            requestAnimationFrame(fn)
+                                                                                                        })
+                                                                                                    })
+                                                                                                })
+                                                                                            })
+                                                                                        })
+                                                                                    })
+                                                                                })
+                                                                            })
+                                                                        })
+                                                                    })
+                                                                })
+                                                            })
+                                                        })
+                                                    })
+                                                })
+                                            })
+                                        })
+                                    })
+                                })
+                            })
+                        })
+                    })
+                })
+            })
+        }
+        var func_b = function (fn) {
+            requestAnimationFrame(function() {
+                fn()
+            })
+        }
+        var left1 = 0
+
+        function step1() {
+            left1 += 500
+            box1.style.left = left1 + 'px';
+        }
+        console.time('step1')
+        func_a(step1)
+        console.timeEnd('step1')
+
+        var left2 = 0
+        function step2() {
+            left2 += 500
+            box2.style.left = left2 + 'px';
+        }
+        console.time('step2')
+        func_b(step2)
+        console.timeEnd('step2')
+
+        setTimeout(function() {
+            console.log(left1, left2)
+        }, 2000)
+
+
+    </script>
+
+
 
 
 

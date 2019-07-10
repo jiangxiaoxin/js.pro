@@ -45,6 +45,11 @@ const hooks: (keyof Module)[] = ['create', 'update', 'remove', 'destroy', 'pre',
 export {h} from './h';
 export {thunk} from './thunk';
 
+/**
+ * 整个核心就是这个init方法
+ * @param modules module数组
+ * @param domApi
+ */
 export function init(modules: Array<Partial<Module>>, domApi?: DOMAPI) {
   let i: number, j: number, cbs = ({} as ModuleHooks);
 
@@ -178,6 +183,13 @@ export function init(modules: Array<Partial<Module>>, domApi?: DOMAPI) {
     }
   }
 
+    /**
+     * diff
+     * @param parentElm
+     * @param oldCh
+     * @param newCh
+     * @param insertedVnodeQueue
+     */
   function updateChildren(parentElm: Node,
                           oldCh: Array<VNode>,
                           newCh: Array<VNode>,
