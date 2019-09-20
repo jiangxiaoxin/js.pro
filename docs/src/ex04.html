@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <style>
+      .container {
+        display: flex;
+        padding: 20px 50px;
+        height: 400px;
+        background: #aaaaaa;
+        align-items: flex-end;
+        /* justify-content: stretch; */
+        /* align-items: stretch; */
+      }
+
+      .item {
+        /* display: inline-block; */
+      }
+
+      .item-1 {
+        background: red;
+        /* height: 20px; */
+      }
+
+      .item-2 {
+        background: green;
+      }
+
+      .item-3 {
+        background: blue;
+      }
+
+      .search-bar {
+        width: 400px;
+        border: 1px solid #dddddd;
+        display: flex;
+        box-sizing: border-box;
+      }
+
+      .search-bar > input {
+        color: red;
+      }
+
+      .name-input {
+        flex: 1 1 auto;
+        padding: 5px 10px;
+        line-height: 1.5;
+      }
+
+      .search-btn {
+        line-height: 1.5;
+      }
+
+      hr {
+        border: none;
+        border-top: 3px double #333333;
+        text-align: center;
+        color: #333333;
+        height: 6px;
+        position: relative;
+        overflow: visible;
+      }
+
+      hr:after {
+        content: '我也是有底线的。。。';
+        position: absolute;
+        transform: translate(-50%, -50%);
+        background: white;
+        padding: 0 5px;
+        font-size: 12px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <span class="item item-1">1111</span>
+      <span class="item item-2">2222222222222</span>
+      <span class="item item-3">3</span>
+    </div>
+    <hr />
+    <div class="search-bar">
+      <input type="text" class="name-input" placeholder="input here..." />
+      <input type="button" value="send" class="search-btn" />
+    </div>
+
+    <div style="width: 200px; height: 200px;display: flex;justify-content: center; align-items: center;background: red;">
+      <div style="width: 50px; height: 50px; background: green;"></div>
+    </div>
+  </body>
+</html>
