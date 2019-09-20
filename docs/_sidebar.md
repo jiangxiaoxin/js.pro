@@ -6,6 +6,7 @@
   - [网站性能相关](performance/性能相关.md)
 - Vue
   - [Vuex 源码分析](vue/vuex/vuex.md)
+  - [Vue slot](vue/slot.md)
 - other
   - [Git 常用命令](others/git.md)
   - [Webpack](others/webpack.md)
