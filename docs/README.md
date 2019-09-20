@@ -20,7 +20,11 @@ git clone https://github.com/jiangxiaoxin/js.pro.git
 docsify serve docs
 ```
 
-## 新增
+## 新增文章
 
 - 在对应的目录下以 `markdown` 格式写
 - 更新 `_sidebar.md` 内的链接，即更新了左边侧边栏
+
+## 正式地址
+
+https://jiangxiaoxin.github.io/js.pro/#/
