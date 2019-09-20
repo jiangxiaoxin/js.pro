@@ -7,6 +7,9 @@
 - Vue
   - [Vuex 源码分析](vue/vuex/vuex.md)
   - [Vue slot](vue/slot.md)
+- Element
+  - [目录](element/index.md)
+  - [Dialog](element/dialog.md)
 - other
   - [Git 常用命令](others/git.md)
   - [Webpack](others/webpack.md)

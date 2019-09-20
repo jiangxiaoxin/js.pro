@@ -32,3 +32,5 @@ https://jiangxiaoxin.github.io/js.pro/#/
 ## 说明
 
 `doc`下的`index.html`里用`script src`的方式嵌入了外部链接，所以可以在访问的时候再解析、生成网站
+
+element 下的目录竟然可以`[dialog](/element/dialog.md)`这样子绑定链接
