@@ -11,3 +11,4 @@
 ## others
 
 - [x] [dialog](/element/dialog.md)
+- [x] [timeline](/element/timeline.md)
