@@ -84,3 +84,7 @@ hide(cancel) {
 `sync`就是`update:myPropName`这种处理的简写方式
 
 [sync 的说明](https://cn.vuejs.org/v2/guide/components-custom-events.html#sync-%E4%BF%AE%E9%A5%B0%E7%AC%A6)
+
+Dialog 里使用 `mixin` 将 `Popup` 引入，这样子是 Dialog 既有了 Popup 的功能，同时 Popup 又作为单独“组件”可以在别的组件里复用.
+
+`mixin`可以为某个组件或者所有的 Vue 组件引入一组新的功能，是实现功能复用的很好的方式
