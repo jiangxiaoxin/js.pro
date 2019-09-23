@@ -10,4 +10,4 @@
 
 ## others
 
-- [x][dialog](/element/dialog.md)
+- [x] [dialog](/element/dialog.md)
