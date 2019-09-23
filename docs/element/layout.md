@@ -21,3 +21,19 @@ col 使用`float:left`，rol 就要清除浮动.
 col 根据 span 计算出 width 占父级容器的百分比。要设置 col 的`box-sizing: border-box;`
 
 通过 padding 使两个 col 之间加上间隔，但是第一个左边和最后一个右边都有 padding 值，就会看起来跟父容器不对齐，所以要消除这种效果。第 1 种就是将他们的 padding 重置，但这样多个 col 之间。他们里面的显示容器宽度就会不一样，所以不能改 padding。那就让父容器 row 两边都伸出去个负的 margin，同时满足 col 之间宽度一致，又视觉上 col 顶着 row 来布局
+
+row 和 col 都不是普通的单文件组件，而是用 `render` 方法渲染组件内容
+
+```js
+render(h) {
+    return h(this.tag, {
+      class: [
+        'el-row',
+        this.justify !== 'start' ? `is-justify-${this.justify}` : '',
+        this.align !== 'top' ? `is-align-${this.align}` : '',
+        { 'el-row--flex': this.type === 'flex' }
+      ],
+      style: this.style
+    }, this.$slots.default);
+  }
+```
