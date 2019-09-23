@@ -2,11 +2,11 @@
 
 ## basic
 
-- [ ] [layout](/element/layout.md)
+- [x] [layout](/element/layout.md)
 - [x] [icon](/element/icon.md)
-- [ ] [button](/element/button.md)
+- [x] [button](/element/button.md)
 - [x] [container](/element/container.md)
-- [ ] [link](/element/link.md)
+- [x] [link](/element/link.md)
 
 ## others
 

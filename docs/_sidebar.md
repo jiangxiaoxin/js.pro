@@ -9,6 +9,7 @@
   - [Vue slot](vue/slot.md)
 - Element
   - [目录](element/index.md)
+  - [Button](element/button.md)
   - [Dialog](element/dialog.md)
 - other
   - [Git 常用命令](others/git.md)
