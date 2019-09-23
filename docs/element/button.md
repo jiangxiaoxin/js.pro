@@ -8,7 +8,7 @@
 
 ![vertical-button-group](../imgs/vertical-button-group.jpg)
 
-```html
+```js
 <template>
   <div>
     <div class="button-group">
@@ -95,6 +95,12 @@
       &:not(:first-child):not(:last-child) {
         border-radius: 0;
       }
+
+      // &:first-child:last-child {
+      //   padding-left: 12px;
+      //   padding-right: 12px;
+      //   border-radius: 50%;
+      // }
     }
   }
 </style>
