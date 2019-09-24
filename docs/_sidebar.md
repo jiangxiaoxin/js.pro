@@ -11,6 +11,7 @@
   - [目录](element/index.md)
   - [Button](element/button.md)
   - [Dialog](element/dialog.md)
+  - [Steps](element/steps.md)
 - other
   - [Git 常用命令](others/git.md)
   - [Webpack](others/webpack.md)

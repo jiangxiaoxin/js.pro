@@ -1,6 +1,6 @@
 # 目录
 
-## basic
+## Basic
 
 - [x] [layout](/element/layout.md)
 - [x] [icon](/element/icon.md)
@@ -8,7 +8,11 @@
 - [x] [container](/element/container.md)
 - [x] [link](/element/link.md)
 
-## others
+## Navigation
+
+- [x] [steps](/element/steps.md)
+
+## Others
 
 - [x] [dialog](/element/dialog.md)
 - [x] [timeline](/element/timeline.md)
