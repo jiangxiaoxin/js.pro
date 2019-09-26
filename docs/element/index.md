@@ -12,6 +12,11 @@
 
 - [x] [steps](/element/steps.md)
 
+## Data
+
+- [x] [tag](/element/tag.md)
+- [x] [badge](/element/badge.md)
+
 ## Others
 
 - [x] [dialog](/element/dialog.md)
