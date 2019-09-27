@@ -10,6 +10,7 @@
 - Element
   - [目录](element/index.md)
   - [Button](element/button.md)
+  - [Radio](element/radio.md)
   - [Dialog](element/dialog.md)
   - [Steps](element/steps.md)
 - other
