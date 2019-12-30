@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <style>
+      body {
+        /* background-color: lightcoral; */
+        margin: 0;
+      }
+      .red,
+      .green,
+      .blue {
+        position: absolute;
+        width: 100px;
+        color: white;
+        line-height: 100px;
+        text-align: center;
+      }
+
+      .red {
+        z-index: 10;
+        top: 20px;
+        left: 20px;
+        background: red;
+      }
+
+      .green {
+        /* z-index: 2; */
+        top: 60px;
+        left: 60px;
+        background: green;
+      }
+
+      .blue {
+        /* z-index: 3; */
+        top: 100px;
+        left: 100px;
+        background: blue;
+      }
+
+      div {
+        position: relative;
+      }
+    </style>
+  </head>
+  <body>
+    <div style="z-index: 1;">
+      <span class="red">Red</span>
+    </div>
+    <div style="z-index: 2;">
+      <span class="green">Green</span>
+    </div>
+    <div style="z-index: 3;">
+      <span class="blue">Blue</span>
+    </div>
+  </body>
+</html>
