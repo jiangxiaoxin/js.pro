@@ -1,10 +1,14 @@
 # z-index
 
-- z-index 只对定位了的元素才有效。就是元素的 position 不是 static，就可以设置 z-index。
-- 对于有效的 z-index，值越大，越在上面.（下面会说明，前提是在一个基准上，专业点叫层叠上下文）
-- 对于没有设置 position 的元素，那它就是最基本的文档流，就是一个个的排列，或 block 的，或 inline 的，元素间按照文档流的先后显示
-- 对于设置了 position 的元素，默认也是按照文档流的先后来显示。但此时可以通过改变 z-index 来改变层级了.（第 1 条说明，光改变 z-index 还不行的，还要改 position）
-- 定位和没定位的元素在一块，没定位的显示在下面，定位的显示在上面。
+最直观的感觉，z-index 越大的，层级越高，就会遮住下面的。这样子说并不准确，准确的是有效的 z-index，在同一个祖先层叠基础上进行比较时才会遵守这个规则。
+
+## 规则说明
+
+- z-index 只对定位了的元素才有效，要求元素的 position 不是 static，z-index 设置不是 auto。
+- 对于没有设置 position 的元素，那它就是最基本的文档流，就是一个个的排列，元素间按照文档流的先后显示
+- 对于设置了 position 的元素，此时可以通过改变 z-index 来改变层级了。
+- 对于有效的 z-index，值越大，越在上面.前提是在一个基准上，专业点叫层叠上下文（对一个元素设置有效的 z-index 之后，这个元素就创建了新的层叠上下文，叫 stacking context）。如果两个元素设置同样的 z-index 值，那就按照先后顺序来显示，后出现的层级更高。
+- 定位和没定位的元素在一块，定位了并且 z-index 为负值的在下面，然后是没定位的，再然后是定位的并且 z-index 为正值的。
 
 ```html
 <div class="parent">
@@ -145,9 +149,15 @@
 
 如果只是认为在父容器的层级基础上继续算自己的层级，那父容器按照文档流的先后，后面的要比前面的高，但结果并不是这样。红色的创建了新的层叠上下文，而绿色和蓝色并没有新的上下文，他们的上下文的基准值都是整个 html，所以相当于 1，0，0，而蓝色比绿色在后，所以蓝色又在绿色之上。此时设置绿色和蓝色的 z-index，就可以调整 3 者的层级关系。但如果给他们的父 div 设置 z-index 之后，他们的基准上下文就不再是 html 了，而是各自的 div。（要注意，z-index 必须 position 设置定位值，不然无效。）此时他们的层级关系就要先算各自的基准了。
 
-- 对元素设置有效的 position 和 z-index 会创建新的层叠上下文，设置 opacity 为小于 1 的值也可以 😂😂😂
+- 对元素设置有效的 position 和 z-index 会创建新的层叠上下文，这是最常见的方式，还有其它的方式，比如设置 opacity 为小于 1 的值也可以 😂😂😂。
+- 网页的根元素<html>会自动创建一个。这也是显然的，总归要有个嘛
+
+## 问题
+
+- 会不会设置其它的属性也会生成新的 stacking context 呢？
 
 ## links
 
 - https://philipwalton.com/articles/what-no-one-told-you-about-z-index/
 - https://developer.mozilla.org/zh-CN/docs/Web/Guide/CSS/Understanding_z_index
+- https://www.w3.org/TR/CSS2/zindex.html
