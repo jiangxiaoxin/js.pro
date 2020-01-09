@@ -4,6 +4,7 @@
   - [继承](js/继承.md)
   - [模块化](js/模块化.md)
   - [网站性能相关](performance/性能相关.md)
+  - [vscode调试node](js/调试node.md)
 - Vue
   - [Vuex 源码分析](vue/vuex/vuex.md)
   - [Vue slot](vue/slot.md)
