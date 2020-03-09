@@ -8,6 +8,7 @@
 - Vue
   - [Vuex 源码分析](vue/vuex/vuex.md)
   - [Vue slot](vue/slot.md)
+  - [Nuxt asyncData & fetch](vue/nuxt-asyncData-fetch.md)
 - other
   - [Git 常用命令](others/git.md)
   - [Webpack](others/webpack.md)
